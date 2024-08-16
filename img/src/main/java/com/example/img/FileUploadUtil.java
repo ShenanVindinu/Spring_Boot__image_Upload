@@ -13,7 +13,7 @@ import java.nio.file.StandardCopyOption;
 public class FileUploadUtil {
     public  static  void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
 
-        Path uploadPath= Paths.get("C:\\Users\\User\\Downloads\\img\\img\\src\\main\\resources\\static\\"+uploadDir);
+        Path uploadPath= Paths.get("D:"+uploadDir);
         if (!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
         }
