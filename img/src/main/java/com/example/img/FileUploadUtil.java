@@ -11,21 +11,17 @@ import java.nio.file.StandardCopyOption;
 
 
 public class FileUploadUtil {
-    public  static  void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
+    public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
 
-        Path uploadPath= Paths.get("D:"+uploadDir);
-        if (!Files.exists(uploadPath)){
+        Path uploadPath = Paths.get("D:" + uploadDir);
+        if (!Files.exists(uploadPath)) {
+
             Files.createDirectories(uploadPath);
+
+            InputStream inputStream = multipartFile.getInputStream();
+
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         }
-        try(InputStream inputStream= multipartFile.getInputStream()) {
-            Path filePath=uploadPath.resolve(fileName);
-            Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
-
-        }catch (IOException ioException){
-
-        }
-
-
-
     }
 }
